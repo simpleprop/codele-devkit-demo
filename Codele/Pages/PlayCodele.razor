@@ -33,7 +33,7 @@
 
 <!-- input box for the player to type and submit a guess -->
 <input placeholder="Type your guess" @bind="newGuess" />
-<button>Submit</button>
+<button @onclick="SubmitGuess">Submit</button>
 
 <!-- display message if guess is not 5 characters long -->
 @if (displayGuessSizeMsg == true) {

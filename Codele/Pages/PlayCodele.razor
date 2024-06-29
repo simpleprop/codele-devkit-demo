@@ -100,4 +100,45 @@
     private void ModalClose() {
         showModal = false;
     } 
+    private void SubmitGuess(MouseEventArgs e){
+        if (!string.IsNullOrEmpty(newGuess))
+        {
+            if (newGuess.Length != 5)
+            {
+                displayGuessSizeMsg = true;
+            }
+            else
+            {
+                displayGuessSizeMsg = false;
+                Guess guess = new Guess(newGuess);
+                if (attempts < 5)
+                {
+                    guess.GetGuessStatuses(correctGuess);
+                    if (guess.IsWinningGuess(correctGuess))
+                    {
+                        showModal = true;
+                        gameStatusMessage = "You won!";
+                    }
+                    else
+                    {
+                        attempts++;
+                    }
+                }
+                else
+                {
+                    showModal = true;
+                    gameStatusMessage = "YOU SUCK";
+                }
+                guesses.Add(guess);
+                newGuess = string.Empty;
+            }
+
+        }
+        else
+        {
+            displayGuessSizeMsg = true;
+        }
+
+    }
+    }
 }
